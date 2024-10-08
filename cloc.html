@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <label>enter date you want to check</label><br>
+    <input type="number" id="year" min="2024"  placeholder="year">
+    <input type="number" max="12" min="1" id="month" placeholder="month">
+    <input type="number" id="day" max="31" min="1"  placeholder="day">
+    <input type="number" id="timehour" max="24" min="1" placeholder="hour"> <br>
+    
+<button onclick="checktime()" class="btn">check</button>
+
+    <h1 id="checktime"></h1>
+</body>
+
+<script>
+
+function checktime(){
+
+    function upDate(){
+
+        const che = document.getElementById("year").value;
+        const year = Number(che);
+
+        const mon = document.getElementById("month").value;
+        const month = Number(mon-1);
+
+        const da = document.getElementById("day").value;
+        const dayy = Number(da);
+
+        const ho = document.getElementById("timehour").value;
+        const hours = Number(ho);
+
+        const mn =["jan","feb","mar","april","may","june","july","august","sep","oct","nove","dec"];
+       
+        const checktime = document.getElementById("checktime");
+    const now = new Date();
+    const dist = new Date(year,month,dayy,hours); 
+
+    const dif = dist - now;
+
+    const day = Math.floor(dif/(1000*60*60*24));
+    const hour = Math.floor((dif%(1000*60*60*24))/(1000*60*60));
+    const min = Math.floor((dif%(1000*60*60))/(1000*60));
+    const se = Math.floor((dif%(1000*60))/(1000));
+
+    const left=`${day} days and ${hour}:${min}:${se}  left until ${dayy} ${mn[month]} ${year}`; 
+
+
+        checktime.textContent= left;
+   // alert(now);
+
+
+  
+   }
+   
+   setInterval(upDate,1000);
+    upDate;
+    
+    
+    
+    
+    
+    }
+</script>
+</html>
